@@ -17,3 +17,17 @@ The top and bottom PCBs are merged into **one 3D-printed holder**:
 | `cad/tc2030_holder.py` | Parametric CadQuery source (`pip install cadquery trimesh manifold3d`) |
 
 Pogo holes are Ø0.70 and guide holes Ø0.80. Ream them after printing.
+
+## Ready-to-print G-code: Elegoo Neptune 3 Pro (Klipper, 0.4 mm nozzle, PETG)
+
+| File | Contents | Time / filament |
+|---|---|---|
+| `print/TC2030_holders_test_PETG_N3Pro_klipper.gcode` | 6 holders + depth jig (test print first) | ~51 min / 0.50 m |
+| `print/TC2030_full_set_PETG_N3Pro_klipper.gcode` | 4 holders, jig, case half A v2, case half B v2, cover | ~1 h 32 min / 1.18 m |
+
+These files were sliced with PrusaSlicer 2.7.2 using `print/neptune3pro_klipper_petg_0.12.ini`: 0.12 mm layers, 100 % infill, Arachne walls, 3 mm brim, PETG at 240/80 °C.
+Each part is labelled for Klipper `EXCLUDE_OBJECT`, so you can cancel one failed part from Mainsail/Fluidd.
+The start G-code uses only standard commands plus `BED_MESH_CALIBRATE`. If your printer.cfg has a `PRINT_START` macro, swap that block for the macro.
+The `.3mf` plates in `print/` open in PrusaSlicer or OrcaSlicer for re-slicing.
+
+FDM note: on a 0.4 mm nozzle the pogo holes print at about Ø0.5 mm. Drill them to Ø0.70 (pogo) and Ø0.80 (guides) with carbide PCB drills. Drill the jig's blind holes to Ø1.0 and Ø1.2.
