@@ -1,0 +1,248 @@
+<title>TC2030 One-Piece Pin Holder</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a drafting sheet — title block on top, a grid of true-scale views, then notes in the margin column */
+:root{
+  --paper:#f3f5f7; --sheet:#ffffff; --ink:#18212b; --muted:#5b6672; --rule:#c9d1d9;
+  --part:#e7488f; --part-tint:#f9d3e4; --dim:#2a6f97; --gold:#c8971f; --steel:#7f8a97; --silver:#c3c7cc;
+  --zone:#2a6f9722; --wire:#7a3fb0;
+  --f-display:"Barlow Condensed","Arial Narrow",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0f151b; --sheet:#151d25; --ink:#e3e9ef; --muted:#97a3af; --rule:#2c3946;
+  --part:#f0619f; --part-tint:#5a2140; --dim:#6cb4dc; --gold:#d9ab3a; --steel:#8e99a6; --silver:#6f777f;
+  --zone:#6cb4dc26; --wire:#b48ae0; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0f151b; --sheet:#151d25; --ink:#e3e9ef; --muted:#97a3af; --rule:#2c3946;
+  --part:#f0619f; --part-tint:#5a2140; --dim:#6cb4dc; --gold:#d9ab3a; --steel:#8e99a6; --silver:#6f777f;
+  --zone:#6cb4dc26; --wire:#b48ae0; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font:15px/1.55 var(--f-body);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:24px 48px}
+.wrap{max-width:1180px;margin:0 auto;display:grid;gap:20px}
+h1,h2,h3{font-family:var(--f-display);font-weight:600;letter-spacing:.01em;text-wrap:balance;margin:0}
+h1{font-size:clamp(1.9rem,4vw,2.7rem);line-height:1.05}
+h2{font-size:1.45rem;text-transform:uppercase;letter-spacing:.06em}
+h3{font-size:1.1rem;text-transform:uppercase;letter-spacing:.07em}
+p{margin:0;max-width:68ch}
+.sheet{background:var(--sheet);border:1.5px solid var(--ink);}
+/* title block */
+.tb{display:grid;grid-template-columns:minmax(0,2.2fr) repeat(4,minmax(0,1fr));}
+.tb>div{border-right:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:10px 14px;min-width:0}
+.tb .name{grid-row:span 2;display:grid;gap:6px;align-content:start}
+.tb>div:nth-child(5),.tb>div:nth-child(9){border-right:0}
+.tb>div:nth-last-child(-n+4){border-bottom:0}
+.lbl{font:500 .68rem/1.2 var(--f-mono);text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+.val{font:500 .95rem/1.3 var(--f-mono);font-variant-numeric:tabular-nums}
+.rev{color:var(--part);font-weight:600}
+.lede{color:var(--muted)}
+@media (max-width:760px){.tb{grid-template-columns:1fr 1fr}.tb .name{grid-column:1/-1;grid-row:auto}
+  .tb>div{border-right:1px solid var(--ink)!important;border-bottom:1px solid var(--ink)!important}.tb>div:nth-child(even){border-right:0!important}}
+/* views */
+.views{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:0}
+.view{border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:12px 14px 14px;display:grid;gap:8px;align-content:start;min-width:0}
+.view header{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.view .sc{font:400 .72rem var(--f-mono);color:var(--muted)}
+.v-tip{grid-column:span 6}.v-fl{grid-column:span 6}
+.v-side{grid-column:span 4}.v-sec{grid-column:span 3}.v-fit{grid-column:span 5}
+.v-r1,.v-r2,.v-r3{grid-column:span 4}
+.view svg{width:100%;height:auto;display:block;overflow:visible}
+.view img{width:100%;height:auto;display:block}
+.cap{font-size:.84rem;color:var(--muted);max-width:none}
+@media (max-width:900px){.views{grid-template-columns:1fr}.views>.view{grid-column:1/-1!important}.view svg{max-height:560px}}
+/* svg styling */
+svg .part{fill:var(--part-tint);stroke:var(--ink);stroke-width:.06;stroke-linejoin:round}
+svg .hole{fill:var(--sheet);stroke:var(--ink);stroke-width:.05}
+svg .hole.g{stroke:var(--steel);stroke-width:.07}
+svg .dim{stroke:var(--dim);stroke-width:.035;fill:none}
+svg .ext{stroke:var(--dim);stroke-width:.025;opacity:.75}
+svg .cl{stroke:var(--muted);stroke-width:.025;stroke-dasharray:.6 .18 .1 .18;opacity:.8}
+svg .hid{stroke:var(--ink);stroke-width:.03;stroke-dasharray:.25 .15;opacity:.6}
+svg text{font-family:var(--f-mono);fill:var(--dim)}
+svg .dt{font-size:.5px;font-weight:500}
+svg .note{font-size:.42px;fill:var(--muted);font-style:italic;font-family:var(--f-body)}
+svg .pogo{fill:var(--gold);opacity:.55}
+svg .plunger{fill:var(--silver)}
+svg .guide{fill:var(--steel);opacity:.6}
+svg .zone{fill:var(--zone);stroke:var(--dim);stroke-width:.03;stroke-dasharray:.2 .12}
+svg .case{stroke:var(--muted);stroke-width:.04;stroke-dasharray:.5 .2}
+svg .cut{fill:url(#hatch);stroke:var(--ink);stroke-width:.06}
+svg .beyond{fill:var(--part-tint);opacity:.45;stroke:var(--ink);stroke-width:.03}
+svg .wire{fill:none;stroke:var(--wire);stroke-width:.28;stroke-linecap:round;opacity:.85}
+svg .orig{fill:none;stroke:var(--part);stroke-width:.05;stroke-dasharray:.25 .15}
+svg .casecut{fill:none;stroke:var(--ink);stroke-width:.06}
+svg .arrow{fill:var(--dim)}
+svg .hatch-l{stroke:var(--part);stroke-width:.05}
+/* notes area */
+.notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));gap:0}
+.notes>section{padding:18px 20px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);display:grid;gap:10px;align-content:start;min-width:0}
+ol,ul{margin:0;padding-left:1.25em;display:grid;gap:6px}
+li{max-width:66ch}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.88rem;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font:500 .7rem var(--f-mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+td.n{font-family:var(--f-mono);white-space:nowrap}
+.chip{display:inline-block;font:500 .7rem var(--f-mono);letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border:1px solid currentColor;border-radius:3px}
+.chip.ok{color:#2e8b57}.chip.risk{color:var(--part)}
+code{font-family:var(--f-mono);font-size:.86em}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:.8rem;color:var(--muted);padding:10px 14px;border-bottom:1px solid var(--rule)}
+.sw{display:inline-block;width:12px;height:12px;vertical-align:-1px;margin-right:6px;border:1px solid var(--ink)}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="10" refY="5" markerWidth=".32" markerHeight=".32" orient="auto-start-reverse" markerUnits="userSpaceOnUse">
+      <path class="arrow" d="M0,1.5 L10,5 L0,8.5 z" transform="scale(1)"/>
+    </marker>
+    <clipPath id="fitclip"><rect x="-7" y="-7" width="14" height="22.5"/></clipPath>
+    <pattern id="hatch" patternUnits="userSpaceOnUse" width=".35" height=".35" patternTransform="rotate(45)">
+      <line class="hatch-l" x1="0" y1="0" x2="0" y2=".35"/>
+    </pattern>
+  </defs>
+</svg>
+
+<div class="wrap">
+  <div class="sheet">
+    <div class="tb">
+      <div class="name">
+        <span class="lbl">Title</span>
+        <h1>TC2030 One-Piece Pin Holder</h1>
+        <p class="lede">Both PCBs from afedorov3/Tag-Connect-DIY merged into one 3D-printed carrier. The rear flange keeps the 1.2&nbsp;mm top-PCB outline so it drops into the original case slot.</p>
+      </div>
+      <div><span class="lbl">Drawing no.</span><div class="val">TC2030-PH-01</div></div>
+      <div><span class="lbl">Revision</span><div class="val rev">A · Draft</div></div>
+      <div><span class="lbl">Units</span><div class="val">mm</div></div>
+      <div><span class="lbl">Date</span><div class="val">2026-11-21</div></div>
+      <div><span class="lbl">Material</span><div class="val">Tough / ABS-like resin</div></div>
+      <div><span class="lbl">Process</span><div class="val">MSLA 0.03 layer</div></div>
+      <div><span class="lbl">Gen. tol.</span><div class="val">±0.05 holes · ±0.1</div></div>
+      <div><span class="lbl">Base design</span><div class="val">CC0 · afedorov3</div></div>
+    </div>
+  </div>
+
+  <div class="sheet">
+    <div class="legend">
+      <span><i class="sw" style="background:var(--part-tint)"></i>Printed holder</span>
+      <span><i class="sw" style="background:var(--gold)"></i>P50-Q1 pogo barrel</span>
+      <span><i class="sw" style="background:var(--steel)"></i>Ø0.8 steel guide</span>
+      <span><i class="sw" style="background:var(--zone)"></i>Wire solder zone</span>
+      <span><i class="sw" style="background:transparent;border-style:dashed;border-color:var(--part)"></i>Original case pocket</span>
+    </div>
+    <div class="views">
+      <div class="view v-tip">
+        <header><h3>View A · Tip face</h3><span class="sc">Z = 0 · replaces bottom PCB</span></header>
+        {{tip}}
+        <p class="cap">TC2030 2×3 grid at 1.27 pitch. 6 × Ø0.70 pogo holes, 3 × Ø0.80 guide holes (shown grey). Outline copied from the original bottom PCB.</p>
+      </div>
+      <div class="view v-fl">
+        <header><h3>View B · Rear flange</h3><span class="sc">Z = 9.0–10.2 · replaces top PCB</span></header>
+        {{flange}}
+        <p class="cap">Same outline and 1.2 thickness as the top PCB, so it seats in the case slot. The two side notches pass the wires (3 per side).</p>
+      </div>
+      <div class="view v-side">
+        <header><h3>View C · Side</h3><span class="sc">looking along Y</span></header>
+        {{side}}
+        <p class="cap">Two spines at |X| ≥ 1.90 join the plates around the guide pins. The centre stays open on both long sides for soldering.</p>
+      </div>
+      <div class="view v-sec">
+        <header><h3>Section A–A</h3><span class="sc">cut at X = 0</span></header>
+        {{section}}
+        <p class="cap">Wires reach each pogo row from its own side, then exit through the flange notches.</p>
+      </div>
+      <div class="view v-fit">
+        <header><h3>View D · Fit in case</h3><span class="sc">case section at Y = 0.3</span></header>
+        {{fit}}
+        <p class="cap">Dashed pink: original entry pocket, which collides with the spines (16 mm³ overlap). Solid: modified case v2 with that 3 mm pocket widened by 0.15 clearance. Checked overlap: 0 mm³.</p>
+      </div>
+      <div class="view v-r1">
+        <header><h3>Iso · Holder</h3><span class="sc">print orientation: tip face down</span></header>
+        <img src="{{img_holder_iso}}" alt="Isometric render of the printed holder with flange on top and tip plate below">
+      </div>
+      <div class="view v-r2">
+        <header><h3>Iso · Underside</h3><span class="sc">tip face</span></header>
+        <img src="{{img_holder_back}}" alt="Render of the holder viewed from the tip face showing the nine holes">
+      </div>
+      <div class="view v-r3">
+        <header><h3>Iso · Loaded</h3><span class="sc">with pins and guides</span></header>
+        <img src="{{img_assembly}}" alt="Render of the holder loaded with six gold pogo pins and three steel guide pins">
+      </div>
+    </div>
+  </div>
+
+  <div class="sheet notes">
+    <section>
+      <h2>What changes</h2>
+      <div class="tbl"><table>
+        <thead><tr><th>Item</th><th>Original</th><th>This draft</th></tr></thead>
+        <tbody>
+          <tr><td>Pin plates</td><td>2 PCBs, 1.2 mm, ordered from a fab</td><td>1 printed part</td></tr>
+          <tr><td>Front plate</td><td class="n">1.2</td><td class="n">1.6 (stiffer print, same front face)</td></tr>
+          <tr><td>Plate gap</td><td class="n">7.8</td><td class="n">7.4</td></tr>
+          <tr><td>Flange</td><td>Top PCB 1.2</td><td>Same outline and thickness</td></tr>
+          <tr><td>Pin retention</td><td>Solder to pads</td><td>Slip fit + thin CA glue</td></tr>
+          <tr><td>Wire joint</td><td>Solder to pin barrel</td><td>Same, in solder zone</td></tr>
+          <tr><td>Pin depth</td><td>Spacer by eye</td><td>Printed depth jig (1.5 mm)</td></tr>
+          <tr><td>Case halves</td><td>Original</td><td>v2: entry pocket widened</td></tr>
+          <tr><td>Cover sleeve</td><td>Original</td><td>Unchanged</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <section>
+      <h2>Print settings</h2>
+      <ul>
+        <li><b>Resin printer recommended.</b> The web between pogo holes is only 1.27 − 0.70 = 0.57 mm, which is too thin for a 0.4 mm FDM nozzle.</li>
+        <li>Orientation: tip face on the plate, no supports inside the holes. Holes print vertical and round.</li>
+        <li>Resin: tough or ABS-like, or high-temp resin if you solder close to the plates.</li>
+        <li>Holes: print at nominal size, then ream by hand with carbide PCB drills, <code>Ø0.70</code> for pogo and <code>Ø0.80</code> for guides. Resin usually prints small holes 0.03–0.08 undersize.</li>
+        <li>FDM fallback: 0.2 mm nozzle, ASA or PETG, holes modelled Ø0.5 and drilled out. Expect a weaker web.</li>
+        <li>Print one tolerance test first: the holder plus the depth jig take about 20 minutes on most MSLA printers.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Assembly sequence</h2>
+      <ol>
+        <li>Ream all 9 holes. Pins should slide in with light finger force.</li>
+        <li>Put the holder flange-down in the depth jig. Push 3 guide wires (cut 18 mm long) and 6 pogo pins in from the tip side until they bottom out. This sets them 1.5 mm behind the flange.</li>
+        <li>Wick thin CA glue at the tip face and the flange. Keep glue off the plungers.</li>
+        <li>Trim the guides to 6.0 mm in front of the tip face and bevel the ends. Pogo tips then sit at 4.85, about 1.15 behind the guides.</li>
+        <li>Thread each wire through its flange notch. Solder it to the barrel inside the solder zone, at least 0.6 mm away from the front plate. Use a fine tip, pre-tinned wire and a short dwell time.</li>
+        <li>Slide on the 4.5 mm heat-shrink, seat the flange in the slot of case half v2, glue the halves together, then add the 6 mm heat-shrink and the cover as in the original guide.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Open points for review</h2>
+      <ul>
+        <li><span class="chip risk">Heat</span> Soldering heats the barrels inside the plastic. Resin handles short hits; PETG may soften. Option: crimp micro ferrules instead of soldering.</li>
+        <li><span class="chip risk">Pin length</span> The 4.85 mm tip protrusion assumes a P50-Q1 length of 16.55 mm. Measure your pins and change <code>JIG_DEPTH</code> if they differ.</li>
+        <li><span class="chip risk">Web</span> The 0.57 mm web at 1.27 pitch is the weak point. Don't push pins in at an angle.</li>
+        <li><span class="chip ok">Fit</span> Flange-in-slot and spine-in-pocket checked by mesh boolean against the original case STL: 0 overlap.</li>
+        <li><span class="chip ok">Grid</span> Hole positions copied from the original Excellon drill file, not re-drawn.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Files</h2>
+      <div class="tbl"><table>
+        <thead><tr><th>File</th><th>Use</th></tr></thead>
+        <tbody>
+          <tr><td class="n">output/TC2030_pin_holder.stl</td><td>Print: holder</td></tr>
+          <tr><td class="n">output/TC2030_pin_holder.step</td><td>Edit in any CAD</td></tr>
+          <tr><td class="n">output/TC2030_depth_jig.stl</td><td>Print: pin-depth jig</td></tr>
+          <tr><td class="n">output/case_half_A_v2.stl</td><td>Print: case half A</td></tr>
+          <tr><td class="n">output/case_half_B_v2.stl</td><td>Print: case half B</td></tr>
+          <tr><td class="n">output/case_cover.stl</td><td>Print: cover (unchanged)</td></tr>
+          <tr><td class="n">cad/tc2030_holder.py</td><td>Parametric source (CadQuery)</td></tr>
+        </tbody>
+      </table></div>
+      <p class="cap">In the repo on branch <code>claude/jolly-sagan-evi7ud</code>.</p>
+    </section>
+  </div>
+</div>
